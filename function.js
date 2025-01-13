@@ -4,15 +4,15 @@
 const add = (a, b) => a + b; // { } 을 생략하면 return 도 생략가능
 
 // const add = (a, b) => {a + b}; // return하는 것이 아닌 함수의 바디가 됨
-// const add = (a, b) => ({a + b}); // 객체를 리턴하고 싶으면 (), {}를 감싸줘야함
+// //함수의 return으로 선언하려면 ({a+b}) 처럼 괄호 () 로 return할 객체를 감싸야함
 
 function caculator(func, a, b) {
     return func(a, b)
-} // 위에 함수들은 전부 함수 선언
+} 
 
 add(3, 5);
-caculator(add, 3, 5);// 여기서 add()가 아닌 add를 넣어야 함 
-//만약에 add()를 대입한다면 caculator(undefined + undefined, 3, 5)가 되어버림 왜냐하면 매개변수도 안넣고 호출한 것이니깐!
+caculator(add, 3, 5);// 여기서 함수인지, 함수의 호출을 넣어야하는지 헷갈린다면? add? add()?
+//만약에 add()를 대입한다면 caculator(undefined + undefined, 3, 5) 이런식으로 머리로 return 값을 대체하면 헷갈리지 않음 왜냐하면 매개변수도 안넣고 호출한 것이니깐! 초보자들이 자주하는 실수라고 함!
 
 document.querySelector('#header').addEventListener('click', add());// 클릭 안해도 실행이 됨, 함수오 함수호출은 다름
 document.querySelector('#header').addEventListener('click', undefined + undefined);// 위에 콜백 함수는 지금 식과 같음, 즉 add() 함수가 아닌 함수의 리턴값을 호출하기 때문에 같다고 볼 수 있음
@@ -26,6 +26,7 @@ document.querySelector('#header').addEventListener('click', onClick());// 이상
 const onClick2 = () => (event) => {
     console.log('hello');
 }
+// 매개변수를 어디 넣을지 애매하면 return 값으로 대입해보면 명확하게 답이 나옴
 
 document.querySelector('#header').addEventListener('click', onClick2());//맞는 코드
 
